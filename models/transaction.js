@@ -1,42 +1,42 @@
 module.exports = [
   {
-    id: "LAdfpW2YPM9xQwie_HcjR",
+    id: "J7t3F",
     itemName: 'Groceries',
-    date: '2024-07-01',
     amount: 150.00,
+    category: 'Food',
     from: 'Walmart',
-    category: 'Food'
+    date: '07/01/2024'
   },
   {
-    id: "YTrhjU8LNO5kPqas_GtqB",
+    id: "aB5zP",
     itemName: 'Gas',
-    date: '2024-07-02',
     amount: 50.00,
+    category: 'Transportation',
     from: 'Shell',
-    category: 'Transportation'
+    date: '07/02/2024'
   },
   {
-    id: "ZQmloK4BDE7yRufi_HwuX",
+    id: "9K1sG",
     itemName: 'Movie Tickets',
-    date: '2024-07-03',
     amount: 30.00,
+    category: 'Entertainment',
     from: 'AMC Theaters',
-    category: 'Entertainment'
+    date: '07/03/2024'
   },
   {
-    id: "HvrefI9PXQ2zMnpo_GmpJ",
+    id: "Q3x8W",
     itemName: 'Coffee',
-    date: '2024-07-04',
     amount: 5.00,
+    category: 'Food',
     from: 'Starbucks',
-    category: 'Food'
+    date: '07/04/2024'
   },
   {
-    id: "WEstyR6BLO0xVnbh_HplZ",
+    id: "dR6hT",
     itemName: 'Electricity Bill',
-    date: '2024-07-05',
     amount: 100.00,
+    category: 'Utilities',
     from: 'Utility Company',
-    category: 'Utilities'
+    date: '07/05/2024'
   }
 ];

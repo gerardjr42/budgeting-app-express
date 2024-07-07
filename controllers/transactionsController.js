@@ -7,7 +7,11 @@ const transactionsArray = require("../models/transaction")
 
 //Get all transactions
 transactions.get("/", (req, res) => {
-  res.json(transactionsArray)
+  if(transactionsArray[0]) {
+    res.status(200).send(transactionsArray)
+  } else {
+    res.status(404).json({error: "Can't find any transactions"})
+  }
 })
 
 //Get single transaction by id
@@ -19,16 +23,18 @@ transactions.get("/:id", (req, res) => {
     if (!transaction) throw new Error(`No transaction with id: ${id}`)
     res.status(200).send(transaction)
   } catch (error) {
-    // console.log(error)
-    //Error is an obj but we need just the message, so we need to key into it
     res.status(404).json({ error: error.message });
   }
 });
 
 //Create a new transaction
 transactions.post("/", (req, res) => {
-  transactionsArray.push({id: nanoid(), ...req.body});
-  res.json(transactionsArray[transactionsArray.length - 1]);
+  try {
+    transactionsArray.push({id: nanoid(5), ...req.body});
+    res.json(transactionsArray[transactionsArray.length - 1]);
+  } catch (error) {
+    res.status(404).json({error: error.message})
+  }
 });
 
 //Update a single transaction
@@ -41,13 +47,18 @@ transactions.put("/:id", (req, res) => {
 });
 
 //Delete a single transaction
+transactions.delete("/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    const transactionIndex = transactionsArray.findIndex((transaction) => transaction.id === id)
 
-transactions.delete("/:id" , (req, res) => {
-  const { id } = req.params;
-  const transactionIndex = transactionsArray.findIndex((transaction) => transaction.id === id)
-  
-  res.json(transactionsArray.splice(transactionIndex, 1)[0]);
+    if(transactionIndex !== -1) {
+      res.json(transactionsArray.splice(transactionIndex, 1)[0]);
+      res.redirect("/transactions")
+    }
+  } catch (error) {
+    res.status(404).json({error: error.message})
+  }
 })
-
 
 module.exports = transactions
